@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirTrafficMonitor", "AirTrafficMonitor\AirTrafficMonitor.csproj", "{426FCE20-4BA1-4C92-8A40-EC97F24B1C7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirTrafficMonitoring.Unit.Test", "AirTrafficMonitoring.Unit.Test\AirTrafficMonitoring.Unit.Test.csproj", "{ED203F8C-B6C9-460B-B460-8E70599A260D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{426FCE20-4BA1-4C92-8A40-EC97F24B1C7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{426FCE20-4BA1-4C92-8A40-EC97F24B1C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{426FCE20-4BA1-4C92-8A40-EC97F24B1C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{426FCE20-4BA1-4C92-8A40-EC97F24B1C7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED203F8C-B6C9-460B-B460-8E70599A260D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED203F8C-B6C9-460B-B460-8E70599A260D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED203F8C-B6C9-460B-B460-8E70599A260D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED203F8C-B6C9-460B-B460-8E70599A260D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8EAE3929-E6BC-4AB9-9902-1765938700EC}
+	EndGlobalSection
+EndGlobal
