@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitor
 {
-//    public class AirSpaceFilter : IAirSpaceFilter
-//    {
+    public class AirSpaceFilter : IAirSpaceFilter
+    {
       
         public Dictionary<string,ITrack> TrackDict { get; set; }
         public Dictionary<string,ITrackCalculator> TrackCalcDict { get; set; }
@@ -21,7 +21,7 @@ namespace AirTrafficMonitor
         public AirSpaceFilter(ITrackHandler trackhandler)
         {
             //Attaching the event to the constructor
-            trackhandler.trackCreated += onTrackCreated;
+            trackhandler.OnTrackCreated += onTrackCreated;
             trackList = new List<ITrack>();
             TrackDict = new Dictionary<string, ITrack>();
             TrackCalcDict = new Dictionary<string, ITrackCalculator>();
@@ -29,7 +29,7 @@ namespace AirTrafficMonitor
 
         public void onTrackCreated(object s, TrackEvent Trackhandler)
         {
-            trackList = Trackhandler.tracks;
+            trackList = Trackhandler.tlist;
             foreach (ITrack track in trackList)
             {
                 if (TrackDict.ContainsKey(track.tag))
@@ -91,6 +91,5 @@ namespace AirTrafficMonitor
             public Dictionary<string, ITrackCalculator> tracks { get; set; }
         }
 
-
-//    }
+    }
 }
