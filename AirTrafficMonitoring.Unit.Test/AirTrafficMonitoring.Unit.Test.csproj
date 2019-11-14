@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OnCollisionCourseTest.cs" />
     <Compile Include="TrackHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrackCalculatorTest.cs" />

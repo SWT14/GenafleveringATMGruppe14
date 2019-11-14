@@ -5,7 +5,7 @@ namespace AirTrafficMonitor
 {
     public interface IOnCollisionCourse
     {
-        event EventHandler<SeperationEvent> CreateSeperation;
+        event EventHandler<SpanEvent> CreateSpan;
 
         double Span(ITrackCalculator track1, ITrackCalculator track2);
         void TrackInAirSpace(TrackinAirEvent TEtracks); 
