@@ -15,6 +15,7 @@ namespace AirTrafficMonitor
       
         public Dictionary<string,ITrack> TrackDict { get; set; }
         public Dictionary<string,ITrackCalculator> TrackCalcDict { get; set; }
+
         public EventHandler<TrackinAirEvent> TrackUpdated;
         public List<ITrack> trackList { get; set; }
 
@@ -34,7 +35,7 @@ namespace AirTrafficMonitor
             {
                 if (TrackDict.ContainsKey(track.tag))
                 {
-                    if (TrackDict.Airspace)
+                    if (track.Airspace)
                     {
                         Create(track);
                     }
@@ -65,7 +66,7 @@ namespace AirTrafficMonitor
             }
             else
             {
-                TrackDict.Add(track.tag, new TrackCalculator(TrackDict[track.tag], track));
+                TrackCalcDict.Add(track.tag, new TrackCalculator(TrackDict[track.tag], track));
             }
 
             TrackDict[track.tag] = track;
@@ -81,15 +82,17 @@ namespace AirTrafficMonitor
             onTrackUpdated(TrackCalcDict);
         }
 
-        protected virtual void onTrackUpdated(Dictionary<String, ITrackCalculator> t)
+        protected virtual void onTrackUpdated(Dictionary<string, ITrackCalculator> t)
         {
             TrackUpdated?.Invoke(this, new TrackinAirEvent() {tracks = t});
         }
 
-        public class TrackinAirEvent : EventArgs
-        {
-            public Dictionary<string, ITrackCalculator> tracks { get; set; }
-        }
 
+
+    }
+
+    public class TrackinAirEvent : EventArgs
+    {
+        public Dictionary<string, ITrackCalculator> tracks { get; set; }
     }
 }

@@ -29,14 +29,14 @@ namespace AirTrafficMonitor
             _collisionTracks = new List<OnCollisionCourse>();
         }
 
-        public void TrackInAirSpace(TrackinAirEvent TEtracks)
+        public void onTrackUpdated(object source, TrackinAirEvent TEtracks)
         {
-            _tracks= TEtracks;
+            _tracks = TEtracks.tracks;
             _collisionTracks = new List<OnCollisionCourse>();
 
             List<ITrackCalculator> flight7 = new List<ITrackCalculator>();
 
-            foreach (var track in TEtracks)
+            foreach (var track in TEtracks.tracks)
             {
                 flight7.Add(track.Value);
             }

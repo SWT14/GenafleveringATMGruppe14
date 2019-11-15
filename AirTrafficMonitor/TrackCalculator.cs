@@ -16,7 +16,7 @@ namespace AirTrafficMonitor
         public double CompassCourse { get; set; }
         public DateTime timestamp { get; set; }
 
-        public TrackCalculator(Track trackBefore, Track trackNow)
+        public TrackCalculator(ITrack trackBefore, ITrack trackNow)
         {
             this.tag = trackNow.tag;
             X_coor = trackNow.X_coor;

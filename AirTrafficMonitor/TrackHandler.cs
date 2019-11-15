@@ -52,17 +52,13 @@ namespace AirTrafficMonitor
                 ? dateTime
                 : DateTime.MinValue;
 
-            tracklist.Add(new Track()  // tilføjer et objekt af klassen Track til tracklisten.
+            tracklist.Add(new Track(_data[0], coordinateX, coordinateY, altitude)  // tilføjer et objekt af klassen Track til tracklisten.
             {
-                tag = _data[0],
-                X_coor = coordinateX,
-                Y_coor = coordinateY,
-                Altitude = altitude,
                 timestamp = dateTime
             });
             
         }
-        protected virtual void OnCreatedTrack(List<ITrack> tracklist)
+        protected virtual void onTrackCreated(List<ITrack> tracklist)
         {
             OnTrackCreated?.Invoke(this, new TrackEvent() { tlist = tracklist });// Send Event
         }// sendEvent(newTrackArgs);
