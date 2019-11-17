@@ -11,8 +11,8 @@ namespace AirTrafficMonitor
     {
         event EventHandler<TrackinAirEvent> TrackUpdated;
         List<ITrack> trackList { get; set; }
-        Dictionary<string, ITrack> TrackDict { get; set; }
-        Dictionary<string, ITrackCalculator> TrackCalcDict { get; set; }
+        Dictionary<string, ITrack> TrackDict { get; }
+        Dictionary<string, ITrackCalculator> TrackCalcDict { get; }
         void onTrackCreated(object s, TrackEvent Trackhandler);
         void Create(ITrack track);
         void Remove(string tag);

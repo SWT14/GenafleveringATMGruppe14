@@ -43,7 +43,6 @@ namespace AirTrafficMonitoring.Unit.Test
         }
 
 
-
         // Test method 2 - Span
 
         [TestCase(400, 0, 300, 0, 500)]

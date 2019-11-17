@@ -17,31 +17,30 @@ namespace AirTrafficMonitor
         
         private List<OnCollisionCourse> _collisionTracks;
         public event EventHandler<SpanEvent> CreateSpan;
-        public Dictionary<String, TrackCalculator> _tracks { get; set; }
-        
+        public Dictionary<String, ITrackCalculator> tracks { get; set; }
 
-        public OnCollisionCourse(List<ITrackCalculator> collisionFlights, IAirSpaceFilter airSpaceFilter)
+        public OnCollisionCourse(List<ITrackCalculator> flights, IAirSpaceFilter airSpaceFilter)
         {
-            _collisionFlights = collisionFlights;
+            _collisionFlights = flights;
             _collisionTime = DateTime.Now;
 
             airSpaceFilter.TrackUpdated += onTrackUpdated;
             _collisionTracks = new List<OnCollisionCourse>();
         }
 
-        public void onTrackUpdated(object source, TrackinAirEvent TEtracks)
+        public void onTrackUpdated(object source, TrackinAirEvent AStracks)
         {
-            _tracks = TEtracks.tracks;
+            tracks = AStracks.tracks;
             _collisionTracks = new List<OnCollisionCourse>();
 
             List<ITrackCalculator> flight7 = new List<ITrackCalculator>();
 
-            foreach (var track in TEtracks.tracks)
+            foreach (var track in AStracks.tracks)
             {
                 flight7.Add(track.Value);
             }
 
-            for (int i = 0; i < flight7.Count; f++)
+            for (int i = 0; i < flight7.Count; i++)
             {
                 for (int f = i + 1; f < flight7.Count; f++)
                 {
@@ -60,7 +59,7 @@ namespace AirTrafficMonitor
 
             if (_collisionTracks.Count > 0)
             {
-                OnCreateSeperation(_collisionTracks);
+                OnCreateSpan(_collisionTracks);
             }
         }
 
@@ -70,13 +69,12 @@ namespace AirTrafficMonitor
             return Math.Abs(difference1);
         }
 
-        protected virtual void OnCreateSeperation(List<OnCollisionCourse> collisiontracks)
+        protected virtual void OnCreateSpan(List<OnCollisionCourse> collisiontracks)
         {
             CreateSpan?.Invoke(this, new SpanEvent() {Collisiontracks = collisiontracks});
         }
 
     }
-
 
     public class SpanEvent : EventArgs
     {

@@ -17,8 +17,7 @@ namespace AirTrafficMonitoring.Unit.Test
         private ITrackCalculator track3;
         private ITrackCalculator track4;
         private ITrackCalculator track5;
-        private ITrackCalculator track6;
-        private ITrackCalculator track7;
+
         private TrackinAirEvent fakeTrackUpdated;
         private int trackEventCalled;
         private List<OnCollisionCourse> collisionList;
@@ -47,9 +46,9 @@ namespace AirTrafficMonitoring.Unit.Test
 
             track4 = Substitute.For<ITrackCalculator>();
             track4.tag = "Flight 4";
-            track4.Altitude = 700;
-            track4.X_coor = 10000;
-            track4.Y_coor = 12000;
+            track4.Altitude = 400;
+            track4.X_coor = 70000;
+            track4.Y_coor = 30000;
 
             track5 = Substitute.For<ITrackCalculator>();
             track5.tag = "Flight 5";
@@ -57,17 +56,6 @@ namespace AirTrafficMonitoring.Unit.Test
             track5.X_coor = 10000;
             track5.Y_coor = 12000;
 
-            track6 = Substitute.For<ITrackCalculator>();
-            track6.tag = "Flight 6";
-            track6.Altitude = 900;
-            track6.X_coor = 10000;
-            track6.Y_coor = 16000;
-
-            track7 = Substitute.For<ITrackCalculator>();
-            track7.tag = "Flight 7";
-            track7.Altitude = 400;
-            track7.X_coor = 70000;
-            track7.Y_coor = 30000;
 
             trackCalculator = Substitute.For<IAirSpaceFilter>();
 
@@ -87,5 +75,45 @@ namespace AirTrafficMonitoring.Unit.Test
             double span = _uut.Span(track1, track2);
             Assert.That(span, Is.EqualTo(40000));
         }
+
+        [Test]
+        public void Track1And2_Negativ_Return()
+        {
+            double span = _uut.Span(track2, track1);
+            Assert.That(span, Is.EqualTo(40000));
+        }
+
+        [Test]
+        public void onTrackUpdated_NoEvent_NoConflict()
+        {
+            Dictionary<String, ITrackCalculator> cTracks = new Dictionary<string, ITrackCalculator>();
+            cTracks.Add(track3.tag,track3);
+            cTracks.Add(track4.tag,track4);
+
+            fakeTrackUpdated.tracks = cTracks;
+            trackCalculator.TrackUpdated += Raise.EventWith(fakeTrackUpdated);
+            
+            Assert.That(collisionList.Count, Is.EqualTo(0));
+            Assert.That(trackEventCalled, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void onTrackUpdated_EventRaised_Conflict()
+        {
+            Dictionary<String, ITrackCalculator> cTracks = new Dictionary<string, ITrackCalculator>();
+            cTracks.Add(track3.tag, track3);
+            cTracks.Add(track5.tag, track5);
+
+            fakeTrackUpdated.tracks = cTracks;
+            trackCalculator.TrackUpdated += Raise.EventWith(fakeTrackUpdated);
+
+
+            Assert.That(collisionList.Count, Is.EqualTo(1));
+            Assert.That(trackEventCalled, Is.EqualTo(1));
+            Assert.That(collisionList[0]._collisionFlights.Contains((track3)));
+            Assert.That(collisionList[0]._collisionFlights.Contains((track5)));
+        }
+
+
     }
 }

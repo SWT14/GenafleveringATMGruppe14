@@ -13,7 +13,7 @@ namespace AirTrafficMonitor
     public class AirSpaceFilter : IAirSpaceFilter
     {
       
-        public Dictionary<string,ITrack> TrackDict { get; set; }
+        public Dictionary<string,ITrack> TrackDict { get; }
         public Dictionary<string,ITrackCalculator> TrackCalcDict { get; set; }
 
         public EventHandler<TrackinAirEvent> TrackUpdated;
@@ -86,8 +86,6 @@ namespace AirTrafficMonitor
         {
             TrackUpdated?.Invoke(this, new TrackinAirEvent() {tracks = t});
         }
-
-
 
     }
 
