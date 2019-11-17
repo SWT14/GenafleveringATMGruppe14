@@ -16,7 +16,7 @@ namespace AirTrafficMonitor
 
         
         private List<OnCollisionCourse> _collisionTracks;
-        public event EventHandler<SeperationEvent> CreateSeperation;
+        public event EventHandler<SpanEvent> CreateSpan;
         public Dictionary<String, TrackCalculator> _tracks { get; set; }
         
 
@@ -72,13 +72,13 @@ namespace AirTrafficMonitor
 
         protected virtual void OnCreateSeperation(List<OnCollisionCourse> collisiontracks)
         {
-            CreateSeperation?.Invoke(this, new SeperationEvent() {Collisiontracks = collisiontracks});
+            CreateSpan?.Invoke(this, new SpanEvent() {Collisiontracks = collisiontracks});
         }
 
     }
 
 
-    public class SeperationEvent : EventArgs
+    public class SpanEvent : EventArgs
     {
         public List<OnCollisionCourse> Collisiontracks { get; set; }
     }

@@ -46,7 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IConsoleWriter.cs" />
+    <Compile Include="Interface\IConsoleWriter.cs" />
     <Compile Include="Interface\IAirSpaceFilter.cs" />
     <Compile Include="AirSpaceFilter.cs" />
     <Compile Include="ConsoleWriter.cs" />
@@ -54,7 +54,7 @@
     <Compile Include="Interface\ITrackCalculator.cs" />
     <Compile Include="Interface\ITrackHandler.cs" />
     <Compile Include="Interface\ITrack.cs" />
-    <Compile Include="IOnCollisionCourse.cs" />
+    <Compile Include="Interface\IOnCollisionCourse.cs" />
     <Compile Include="LogCollision.cs" />
     <Compile Include="OnCollisionCourse.cs" />
     <Compile Include="Program.cs" />

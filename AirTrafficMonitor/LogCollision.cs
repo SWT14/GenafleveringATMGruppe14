@@ -11,10 +11,10 @@ namespace AirTrafficMonitor
     {
         public LogCollision(IOnCollisionCourse LogCollision)
         {
-            LogCollision.CreateSeperation += OnCreateSeperation;
+            LogCollision.CreateSpan += OnCreateSeperation;
         }
 
-        public void OnCreateSeperation(object s, SeperationEvent collision)
+        public void OnCreateSeperation(object s, SpanEvent collision)
         {
             var text = CreateString(collision.Collisiontracks);
             var file = @".\Collisions.txt";
