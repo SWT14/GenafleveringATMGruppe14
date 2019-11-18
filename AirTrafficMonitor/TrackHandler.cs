@@ -34,7 +34,7 @@ namespace AirTrafficMonitor
             {
                 Rawhandler(data);// Split tracks           
             }
-            //OnTrackCreated(tracklist);
+            onTrackCreated(tracklist);
         }
 
         public void Rawhandler(string data) // tager data fra TransponderData som parameter og konvertere det til Tracks
