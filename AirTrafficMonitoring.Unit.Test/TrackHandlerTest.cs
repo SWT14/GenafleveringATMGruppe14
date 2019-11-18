@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AirTrafficMonitor;
 using NSubstitute;
 using NUnit.Framework;
-//using AirTrafficMonitor.TransponderReceiver;
+using AirTrafficMonitor.TransponderReceiver;
 
 
 namespace AirTrafficMonitoring.Unit.Test
@@ -14,30 +14,37 @@ namespace AirTrafficMonitoring.Unit.Test
     [TestClass]
     public class TrackHandlerTest
     {
-        //    private TransponderReceiver.ITransponderReceiver _transponderReceiver;
-        //    //private List<TrackData> _trackData;
+        private ITrackHandler _uut;
+        private List<Track> tracklist;
 
-        //    private TransponderReceiver.RawTransponderDataEventArgs _dataEventArgs;
-        //    private TrackHandler _uut;
-        //    //private List<string> _list;
-        //    //private int _eventCalled;
+        [SetUp]
+        public void Setup()
+        {
+            ITransponderReceiver transponderreceiver = Substitute.For<ITransponderReceiver>();
+            _uut = new Splitter();
+            transponderreceiver.TransponderDataReady += _uut.OnTransponderData;
+            tracklist = new List<Track>();
+        }
 
-        //    [SetUp]
-        //    public void SetUp()
-        //    {
-        //        _dataEventArgs = null;
-        //        _uut = new TrackHandler();
 
-        //        //_list = new List<string>();
-        //        //_eventCalled = 0;
+        [Test]
+       public void CheckIfSinglePlaneOnly
+        {
+            var fakeplanes = new List<string>();
+            fakeplanes.Add("ATR423;39045;12932;14000;20151006213456789");
+            RawTransponderDataEventArgs RawTestData = new RawTransponderDataEventArgs(fakeplanes);
+            _uut.OnTransponderData(null, Rawdata);
+            assert.that(fakeplanes Has.Count.Equalto(1));
+        }
 
-        //        _uut.TransponderReceiver.RawTransponderDataEventArgs += (object, args) =>
-        //        {
-        //            _dataEventArgs = args;
-        //        };
-        //    }
-
-        //    [Test]
-        //    public void TrackHandler_DataHandler_
+        [Test]
+       public void CheckIfSplitCorrectly
+        {
+            Track Track1 = new Track()
+            {
+                SingleTagSectionHandler =
+            }
+            tracklist.add(Track1);
+        }
     }
 }
