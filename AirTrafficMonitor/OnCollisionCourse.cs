@@ -17,7 +17,7 @@ namespace AirTrafficMonitor
         
         private List<OnCollisionCourse> _collisionTracks;
         public event EventHandler<SpanEvent> CreateSpan;
-        public Dictionary<String, ITrackCalculator> tracks { get; set; }
+        public Dictionary<string, TrackCalculator> _tracks { get; set; }
 
         public OnCollisionCourse(List<ITrackCalculator> flights, IAirSpaceFilter airSpaceFilter)
         {
@@ -30,7 +30,7 @@ namespace AirTrafficMonitor
 
         public void onTrackUpdated(object source, TrackinAirEvent AStracks)
         {
-            tracks = AStracks.tracks;
+            _tracks = AStracks.tracks;
             _collisionTracks = new List<OnCollisionCourse>();
 
             List<ITrackCalculator> flight7 = new List<ITrackCalculator>();
@@ -62,6 +62,8 @@ namespace AirTrafficMonitor
                 OnCreateSpan(_collisionTracks);
             }
         }
+
+       
 
         public double Span(ITrackCalculator track1, ITrackCalculator track2)
         {
