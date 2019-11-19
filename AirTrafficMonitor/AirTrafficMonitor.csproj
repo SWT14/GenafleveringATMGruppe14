@@ -50,7 +50,6 @@
     <Compile Include="Interface\IAirSpaceFilter.cs" />
     <Compile Include="AirSpaceFilter.cs" />
     <Compile Include="ConsoleWriter.cs" />
-    <Compile Include="Interface\ILog.cs" />
     <Compile Include="Interface\ITrackCalculator.cs" />
     <Compile Include="Interface\ITrackHandler.cs" />
     <Compile Include="Interface\ITrack.cs" />

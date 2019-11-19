@@ -7,11 +7,11 @@ using System.IO;
 
 namespace AirTrafficMonitor
 {
-    class LogCollision : ILog
+    class LogCollision
     {
-        public LogCollision(IOnCollisionCourse LogCollision)
+        public LogCollision(IOnCollisionCourse logCollision)
         {
-            LogCollision.CreateSpan += OnCreateSpan;
+            logCollision.CreateSpan += OnCreateSpan;
         }
 
         public void OnCreateSpan(object s, SpanEvent collision)
