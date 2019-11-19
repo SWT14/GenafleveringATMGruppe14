@@ -9,29 +9,36 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitor
 {
-    public class OnCollisionCourse : IOnCollisionCourse
+    public class CollisionTracks
     {
-        public List<ITrackCalculator> _collisionFlights { get; } 
+        public List<ITrackCalculator> _collisionFlights { get; }
         public DateTime _collisionTime { get; }
 
-        
-        private List<OnCollisionCourse> _collisionTracks;
-        public event EventHandler<SpanEvent> CreateSpan;
-        public Dictionary<string, TrackCalculator> _tracks { get; set; }
-
-        public OnCollisionCourse(List<ITrackCalculator> flights, IAirSpaceFilter airSpaceFilter)
+        public CollisionTracks(List<ITrackCalculator> flights)
         {
             _collisionFlights = flights;
             _collisionTime = DateTime.Now;
+        }
 
+    }
+    public class OnCollisionCourse : IOnCollisionCourse
+    {
+        
+        
+        private List<CollisionTracks> _collisionTracks;
+        public event EventHandler<SpanEvent> CreateSpan;
+        public Dictionary<string, TrackCalculator> _tracks { get; set; }
+
+        public OnCollisionCourse(IAirSpaceFilter airSpaceFilter)
+        {
             airSpaceFilter.TrackUpdated += onTrackUpdated;
-            _collisionTracks = new List<OnCollisionCourse>();
+            _collisionTracks = new List<CollisionTracks>();
         }
 
         public void onTrackUpdated(object source, TrackinAirEvent AStracks)
         {
             _tracks = AStracks.tracks;
-            _collisionTracks = new List<OnCollisionCourse>();
+            _collisionTracks = new List<CollisionTracks>();
 
             List<ITrackCalculator> flight7 = new List<ITrackCalculator>();
 
@@ -51,7 +58,7 @@ namespace AirTrafficMonitor
                             List<ITrackCalculator> cList = new List<ITrackCalculator>();
                             cList.Add(flight7[i]);
                             cList.Add(flight7[f]);
-                            _collisionTracks.Add(new OnCollisionCourse(cList));
+                            _collisionTracks.Add(new CollisionTracks(cList));
                         }
                     }
                 }
@@ -71,7 +78,7 @@ namespace AirTrafficMonitor
             return Math.Abs(difference1);
         }
 
-        protected virtual void OnCreateSpan(List<OnCollisionCourse> collisiontracks)
+        protected virtual void OnCreateSpan(List<CollisionTracks> collisiontracks)
         {
             CreateSpan?.Invoke(this, new SpanEvent() {Collisiontracks = collisiontracks});
         }
