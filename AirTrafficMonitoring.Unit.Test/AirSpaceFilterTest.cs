@@ -25,8 +25,8 @@ namespace AirTrafficMonitoring.Unit.Test
         [SetUp]
         public void SetUp()
         {
-            _uut = new AirSpaceFilter(_trackhandler);
             _trackhandler = Substitute.For<ITrackHandler>();
+            _uut = new AirSpaceFilter(_trackhandler);
             _fakeTrackHandlerEvent = new TrackEvent();
 
             track1 = Substitute.For<ITrack>();
@@ -54,7 +54,7 @@ namespace AirTrafficMonitoring.Unit.Test
             track3.Airspace = true;
 
             track4 = Substitute.For<ITrack>();
-            track4.tag = "SWTR";
+            track4.tag = "ABCD";
             track4.X_coor = 10500.25;
             track4.Y_coor = 60000.25;
             track4.Altitude = 15000.20;
@@ -69,20 +69,20 @@ namespace AirTrafficMonitoring.Unit.Test
         [Test]
         public void onTrackCreated_RaiseEvent()
         {
-            List<ITrack> tracklist = new List<ITrack>() {track1};
-            _fakeTrackHandlerEvent.tlist = tracklist;
+            List<ITrack> tracklists = new List<ITrack>() {track1};
+            _fakeTrackHandlerEvent.tlist = tracklists;
             _trackhandler.OnTrackCreated += Raise.EventWith(_fakeTrackHandlerEvent);
 
             //Assert that onTrackCreated event is called
-            Assert.That(_uut.trackList, Is.EqualTo(tracklist));
+            Assert.That(_uut.trackList, Is.EqualTo(tracklists));
         }
 
         //Test 2
         [Test]
         public void TrackCreated_EventNotRaised()
         {
-            List<ITrack> tracklist = new List<ITrack>() { track1 };
-            _fakeTrackHandlerEvent.tlist = tracklist;
+            List<ITrack> tracklists = new List<ITrack>() { track1 };
+            _fakeTrackHandlerEvent.tlist = tracklists;
             _trackhandler.OnTrackCreated += Raise.EventWith(_fakeTrackHandlerEvent);
 
             //Assert that event has not been raised
@@ -92,8 +92,8 @@ namespace AirTrafficMonitoring.Unit.Test
         [Test]
         public void CreatedTrack_TrackDicContainsTrack()
         {
-            List<ITrack> tracklist = new List<ITrack>() { track1 };
-            _fakeTrackHandlerEvent.tlist = tracklist;
+            List<ITrack> tracklists = new List<ITrack>() { track1 };
+            _fakeTrackHandlerEvent.tlist = tracklists;
             _trackhandler.OnTrackCreated += Raise.EventWith(_fakeTrackHandlerEvent);
 
             //Assert that TrackDictionary contains Track
@@ -101,10 +101,11 @@ namespace AirTrafficMonitoring.Unit.Test
         }
 
         //Test 4
+        [Test]
         public void TwoTrackOnTrackinAirEvent_TrackDicUpdated()
         {
-            List<ITrack> tracklist = new List<ITrack>() { track1,track2 };
-            _fakeTrackHandlerEvent.tlist = tracklist;
+            List<ITrack> tracklists = new List<ITrack>() { track1,track2 };
+            _fakeTrackHandlerEvent.tlist = tracklists;
             _trackhandler.OnTrackCreated += Raise.EventWith(_fakeTrackHandlerEvent);
 
             //Assert that TrackDic contains updated track
@@ -115,8 +116,8 @@ namespace AirTrafficMonitoring.Unit.Test
         [Test]
         public void TwoTrackOnTrackinAirEvent_EventIsNotRaised()
         {
-            List<ITrack> tracklist = new List<ITrack>() { track1, track2 };
-            _fakeTrackHandlerEvent.tlist = tracklist;
+            List<ITrack> tracklists = new List<ITrack>() { track1, track2 };
+            _fakeTrackHandlerEvent.tlist = tracklists;
             _trackhandler.OnTrackCreated += Raise.EventWith(_fakeTrackHandlerEvent);
 
             //Assert that event is raised
@@ -127,8 +128,8 @@ namespace AirTrafficMonitoring.Unit.Test
         [Test]
         public void TrackinAirspace_TrackCalcDicContainsTrack()
         {
-            List<ITrack> tracklist = new List<ITrack>() { track1, track2, track3 };
-            _fakeTrackHandlerEvent.tlist = tracklist;
+            List<ITrack> tracklists = new List<ITrack>() { track1, track2, track3 };
+            _fakeTrackHandlerEvent.tlist = tracklists;
             _trackhandler.OnTrackCreated += Raise.EventWith(_fakeTrackHandlerEvent);
 
             //Assert that TrackCalcDic contains track
@@ -142,12 +143,12 @@ namespace AirTrafficMonitoring.Unit.Test
         [Test]
         public void TrackinAirspace_TrackCalcDicContainsUpdatedTrack()
         {
-            List<ITrack> tracklist = new List<ITrack>() { track1, track2, track3 };
-            _fakeTrackHandlerEvent.tlist = tracklist;
+            List<ITrack> tracklists = new List<ITrack>() { track1, track2, track3 };
+            _fakeTrackHandlerEvent.tlist = tracklists;
             _trackhandler.OnTrackCreated += Raise.EventWith(_fakeTrackHandlerEvent);
 
-            List<ITrack> tracklist2 = new List<ITrack>() { track4 };
-            _fakeTrackHandlerEvent.tlist = tracklist2;
+            List<ITrack> tracklists2 = new List<ITrack>() { track4 };
+            _fakeTrackHandlerEvent.tlist = tracklists2;
             _trackhandler.OnTrackCreated += Raise.EventWith(_fakeTrackHandlerEvent);
 
             //Assert that TrackCalcDic contains most recent track
@@ -160,8 +161,8 @@ namespace AirTrafficMonitoring.Unit.Test
         [Test]
         public void TrackinAirspace_EventIsRaised()
         {
-            List<ITrack> tracklist = new List<ITrack>() {track3};
-            _fakeTrackHandlerEvent.tlist = tracklist;
+            List<ITrack> tracklists = new List<ITrack>() {track1, track2, track3};
+            _fakeTrackHandlerEvent.tlist = tracklists;
             _trackhandler.OnTrackCreated += Raise.EventWith(_fakeTrackHandlerEvent);
 
             //Assert that event is raised
@@ -172,12 +173,12 @@ namespace AirTrafficMonitoring.Unit.Test
         [Test]
         public void TrackinAirspace_TrackOutOfAirspace_RemoveTrack()
         {
-            List<ITrack> tracklist = new List<ITrack>() { track3 };
-            _fakeTrackHandlerEvent.tlist = tracklist;
+            List<ITrack> tracklists = new List<ITrack>() { track3 };
+            _fakeTrackHandlerEvent.tlist = tracklists;
             _trackhandler.OnTrackCreated += Raise.EventWith(_fakeTrackHandlerEvent);
 
-            List<ITrack> tracklist2 = new List<ITrack>() { track1 };
-            _fakeTrackHandlerEvent.tlist = tracklist2;
+            List<ITrack> tracklists2 = new List<ITrack>() { track1 };
+            _fakeTrackHandlerEvent.tlist = tracklists2;
             _trackhandler.OnTrackCreated += Raise.EventWith(_fakeTrackHandlerEvent);
 
             Assert.That(!_uut.TrackCalcDict.ContainsKey(track1.tag));
