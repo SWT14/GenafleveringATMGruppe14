@@ -87,6 +87,6 @@ namespace AirTrafficMonitor
 
     public class SpanEvent : EventArgs
     {
-        public List<OnCollisionCourse> Collisiontracks { get; set; }
+        public List<CollisionTracks> Collisiontracks { get; set; }
     }
 }
