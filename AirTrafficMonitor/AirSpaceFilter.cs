@@ -91,6 +91,6 @@ namespace AirTrafficMonitor
 
     public class TrackinAirEvent : EventArgs
     {
-        public Dictionary<string, TrackCalculator> tracks { get; set; }
+        public Dictionary<string, ITrackCalculator> tracks { get; set; }
     }
 }
