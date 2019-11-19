@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
-using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using Assert = NUnit.Framework.Assert;
 
 namespace AirTrafficMonitoring.Unit.Test
 {
@@ -38,6 +38,7 @@ namespace AirTrafficMonitoring.Unit.Test
 
             TrackCalculator track = new TrackCalculator(track1, track2);
             double velocity = track.VelocityCalculation(400, 0, 300, 0, dateTime1, dateTime2);
+
             Assert.That(velocity, Is.EqualTo(500));
 
         }
