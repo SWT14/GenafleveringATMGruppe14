@@ -17,10 +17,10 @@ namespace AirTrafficMonitor
             }
         }
 
-        public void printOncollisioncourse(List<ITrack> OnCollisionsCourseList)
+        public void printOncollisioncourse(List<ITrack> _collisionTracks)
         {
                 
-            foreach (Track track in OnCollisionsCourseList)
+            foreach (Track track in _collisionTracks)
             {
                 Console.WriteLine("flynummer:" + track.tag + "DANGER on collision imminent, change course Imiadiatly!!");
             }

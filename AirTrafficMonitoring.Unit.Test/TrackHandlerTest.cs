@@ -6,12 +6,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AirTrafficMonitor;
 using NSubstitute;
 using NUnit.Framework;
-using AirTrafficMonitor.TransponderReceiver;
+using NUnit.Framework.Internal;
+using Assert = NUnit.Framework.Assert;
+using TransponderReceiver;
 
 
 namespace AirTrafficMonitoring.Unit.Test
 {
-    [TestClass]
+    [TestFixture]
     public class TrackHandlerTest
     {
         private ITrackHandler _uut;
@@ -21,14 +23,14 @@ namespace AirTrafficMonitoring.Unit.Test
         public void Setup()
         {
             ITransponderReceiver transponderreceiver = Substitute.For<ITransponderReceiver>();
-            _uut = new Splitter();
+            _uut = new TrackHandler();
             transponderreceiver.TransponderDataReady += _uut.OnTransponderData;
             tracklist = new List<Track>();
         }
 
 
         [Test]
-       public void CheckIfSinglePlaneOnly
+       public void CheckIfSinglePlaneOnly()
         {
             var fakeplanes = new List<string>();
             fakeplanes.Add("ATR423;39045;12932;14000;20151006213456789");
@@ -38,7 +40,7 @@ namespace AirTrafficMonitoring.Unit.Test
         }
 
         [Test]
-       public void CheckIfSplitCorrectly
+       public void CheckIfSplitCorrectly()
         {
             Track Track1 = new Track()
             {
