@@ -15,7 +15,7 @@ namespace AirTrafficMonitor
         }
 
         public void OnCreateSpan(object s, SpanEvent collision)
-        { 
+        {
             var text = CreateString(collision.Collisiontracks);
             var file = @".\Collisions.txt";
 
@@ -28,7 +28,7 @@ namespace AirTrafficMonitor
             }
         }
 
-        public string[] CreateString(List<OnCollisionCourse> col)
+        public string[] CreateString(List<CollisionTracks> col)
         {
             var lin = new String[col.Count];
             for (int i = 0; i < col.Count; i++)
