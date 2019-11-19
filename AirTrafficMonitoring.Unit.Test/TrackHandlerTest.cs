@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Security.Cryptography.X509Certificates;
@@ -36,7 +36,7 @@ namespace AirTrafficMonitoring.Unit.Test
             fakeplanes.Add("ATR423;39045;12932;14000;20151006213456789");
             RawTransponderDataEventArgs RawTestData = new RawTransponderDataEventArgs(fakeplanes);
             _uut.OnTransponderData(null, Rawdata);
-            assert.that(fakeplanes Has.Count.Equalto(1));
+            Assert.That(fakeplanes, Has.Count.Equalto(1));
         }
 
         [Test]
@@ -50,3 +50,4 @@ namespace AirTrafficMonitoring.Unit.Test
         }
     }
 }
+*/
