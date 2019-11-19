@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using AirTrafficMonitor;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using NUnit.Framework;
-using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using Assert = NUnit.Framework.Assert;
+//using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace AirTrafficMonitoring.Unit.Test
 {
@@ -20,15 +22,17 @@ namespace AirTrafficMonitoring.Unit.Test
 
         private TrackinAirEvent fakeTrackUpdated;
         private int trackEventCalled;
-        private List<OnCollisionCourse> collisionList;
+        private List<CollisionTracks> collisionList;
         private List<ITrackCalculator> trackCalculator;
+        private IAirSpaceFilter ASF;
+        
 
         [SetUp]
         public void Setup()
         {
             fakeTrackUpdated = new TrackinAirEvent();
             trackEventCalled = 0;
-            collisionList = new List<OnCollisionCourse>();
+            collisionList = new List<CollisionTracks>();
 
             track1 = Substitute.For<ITrackCalculator>();
             track1.X_coor = 40000;
@@ -57,9 +61,9 @@ namespace AirTrafficMonitoring.Unit.Test
             track5.Y_coor = 12000;
 
 
-            trackCalculator = Substitute.For<IAirSpaceFilter>();
+            ASF = Substitute.For<IAirSpaceFilter>();
 
-            _uut = new OnCollisionCourse(trackCalculator);
+            _uut = new OnCollisionCourse(ASF);
 
             _uut.CreateSpan += (o, args) =>
             {
@@ -91,7 +95,7 @@ namespace AirTrafficMonitoring.Unit.Test
             cTracks.Add(track4.tag,track4);
 
             fakeTrackUpdated.tracks = cTracks;
-            trackCalculator.TrackUpdated += Raise.EventWith(fakeTrackUpdated);
+            ASF.TrackUpdated += Raise.EventWith(fakeTrackUpdated);
             
             Assert.That(collisionList.Count, Is.EqualTo(0));
             Assert.That(trackEventCalled, Is.EqualTo(0));
@@ -105,7 +109,7 @@ namespace AirTrafficMonitoring.Unit.Test
             cTracks.Add(track5.tag, track5);
 
             fakeTrackUpdated.tracks = cTracks;
-            trackCalculator.TrackUpdated += Raise.EventWith(fakeTrackUpdated);
+            ASF.TrackUpdated += Raise.EventWith(fakeTrackUpdated);
 
 
             Assert.That(collisionList.Count, Is.EqualTo(1));
