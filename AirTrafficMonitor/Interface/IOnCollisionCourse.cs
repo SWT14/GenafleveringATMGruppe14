@@ -8,8 +8,8 @@ namespace AirTrafficMonitor
         event EventHandler<SpanEvent> CreateSpan;
 
         double Span(ITrackCalculator track1, ITrackCalculator track2);
-        void onTrackUpdated(object source, TrackinAirEvent TEtracks); 
-        Dictionary<string, ITrackCalculator> _tracks { get; set; }
+        void onTrackUpdated(object source, TrackinAirEvent AStracks); 
+        Dictionary<String, ITrackCalculator> _tracks { get; set; }
         
     }
 }
