@@ -27,7 +27,7 @@ namespace AirTrafficMonitor
         
         private List<CollisionTracks> _collisionTracks;
         public event EventHandler<SpanEvent> CreateSpan;
-        public Dictionary<string, TrackCalculator> _tracks { get; set; }
+        public Dictionary<String, ITrackCalculator> _tracks { get; set; }
 
         public OnCollisionCourse(IAirSpaceFilter airSpaceFilter)
         {
