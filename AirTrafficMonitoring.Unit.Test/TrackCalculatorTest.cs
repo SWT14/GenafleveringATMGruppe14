@@ -25,8 +25,8 @@ namespace AirTrafficMonitoring.Unit.Test
         [Test]
         public void CompassCourse_Return_DateVelocity()
         {
-            DateTime dateTime1 = DateTime.ParseExact("20191101220012345", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
-            DateTime dateTime2 = DateTime.ParseExact("20191101220013345", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime dateTime1 = DateTime.ParseExact("20191101220013345", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime dateTime2 = DateTime.ParseExact("20191101220012345", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
 
             track1.timestamp = dateTime1;
             track1.X_coor = 400;
