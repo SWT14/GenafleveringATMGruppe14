@@ -56,7 +56,7 @@ namespace AirTrafficMonitoring.Unit.Test
 
             track5 = Substitute.For<ITrackCalculator>();
             track5.tag = "Flight 5";
-            track5.Altitude = 701;
+            track5.Altitude = 699;
             track5.X_coor = 10000;
             track5.Y_coor = 12000;
 
@@ -72,7 +72,7 @@ namespace AirTrafficMonitoring.Unit.Test
             };
         }
 
-
+        // Test 1 
         [Test]
         public void Track1And2_Positiv_Return()
         {
@@ -80,6 +80,7 @@ namespace AirTrafficMonitoring.Unit.Test
             Assert.That(span, Is.EqualTo(40000));
         }
 
+        // Test 2
         [Test]
         public void Track1And2_Negativ_Return()
         {
@@ -87,7 +88,8 @@ namespace AirTrafficMonitoring.Unit.Test
             Assert.That(span, Is.EqualTo(40000));
         }
 
-        [Test]
+        // Test 3
+        [Test] 
         public void onTrackUpdated_NoEvent_NoConflict()
         {
             Dictionary<String, ITrackCalculator> cTracks = new Dictionary<string, ITrackCalculator>();
@@ -101,6 +103,7 @@ namespace AirTrafficMonitoring.Unit.Test
             Assert.That(trackEventCalled, Is.EqualTo(0));
         }
 
+        //Test 4
         [Test]
         public void onTrackUpdated_EventRaised_Conflict()
         {
