@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitor
 {
-    class ConsoleWriter : IConsoleWriter
+   public class ConsoleWriter : IConsoleWriter
     {
         public void printPlanes(List<ITrack> tracklist) // har til opgave at udskrive de fly som er i airspace
         {

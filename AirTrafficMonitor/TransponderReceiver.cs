@@ -7,7 +7,7 @@ using TransponderReceiver;
 
 namespace AirTrafficMonitor
 {
-    public class TransponderReceiver
+    public class TransponderReceiverClient
     {
         public class RawTransponderDataEventArgs : EventArgs
         {
@@ -28,6 +28,6 @@ namespace AirTrafficMonitor
             public static ITransponderReceiver CreateTransponderDataReceiver { get; }
         }
 
-        
+
     }
 }
