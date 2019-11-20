@@ -17,10 +17,9 @@ namespace AirTrafficMonitor
 
             // Dependency injection with the real TDR
             var system = new AirTrafficMonitor.TrackHandler(receiver);
-
             // Let the real TDR execute in the background
             while (true)
-                Thread.Sleep(1000);
+                Thread.Sleep(1000);           
         }
 
     }

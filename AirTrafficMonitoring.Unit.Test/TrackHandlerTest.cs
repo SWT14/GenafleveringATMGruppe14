@@ -16,37 +16,39 @@ namespace AirTrafficMonitoring.Unit.Test
     [TestFixture]
     public class TrackHandlerTest
     {
-        private ITrackHandler _uut;
+        private TrackHandler _uut;
         private List<Track> tracklist;
 
         [SetUp]
         public void Setup()
         {
             ITransponderReceiver transponderreceiver = Substitute.For<ITransponderReceiver>();
-            _uut = new TrackHandler();
-            transponderreceiver.TransponderDataReady += _uut.OnTransponderData;
+            _uut = new TrackHandler(transponderreceiver);
+            transponderreceiver.TransponderDataReady += _uut.DataHandler;
             tracklist = new List<Track>();
         }
 
 
         [Test]
-       public void CheckIfSinglePlaneOnly()
+       public void CheckIfSinglePlaneOnly()  // tjekker om den forstår at skelne mellem fly
         {
             var fakeplanes = new List<string>();
             fakeplanes.Add("ATR423;39045;12932;14000;20151006213456789");
             RawTransponderDataEventArgs RawTestData = new RawTransponderDataEventArgs(fakeplanes);
-            _uut.OnTransponderData(null, Rawdata);
-            assert.that(fakeplanes Has.Count.Equalto(1));
+            _uut.DataHandler(null, RawTestData);
+            Assert.That(fakeplanes, Has.Count.EqualTo(1));
         }
 
         [Test]
-       public void CheckIfSplitCorrectly()
+       public void CheckIfSplitCorrectly() // tjekker om rawhandler splitter tracket rigtigt ved at sammenligne med prædifineret track
         {
-            Track Track1 = new Track()
-            {
-                SingleTagSectionHandler =
-            }
-            tracklist.add(Track1);
+            Track Track1 = new Track("DOH322", 23000, 34023, 760); // skabelon      
+            tracklist.Add(Track1);
+            var fakeplane = new List<string>();
+            fakeplane.Add("DOH322;23000;34023;760");
+            RawTransponderDataEventArgs RawTestData = new RawTransponderDataEventArgs(fakeplane);
+            _uut.DataHandler(null, RawTestData);
+            Assert.That(fakeplane, Is.EqualTo(Track1));
         }
     }
 }
