@@ -7,7 +7,7 @@ using System.IO;
 
 namespace AirTrafficMonitor
 {
-    class LogCollision
+    public class LogCollision
     {
         public LogCollision(IOnCollisionCourse logCollision)
         {
