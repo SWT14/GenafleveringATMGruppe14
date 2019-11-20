@@ -42,10 +42,10 @@ namespace AirTrafficMonitoring.Unit.Test
         [Test]
        public void CheckIfSplitCorrectly() // tjekker om rawhandler splitter tracket rigtigt ved at sammenligne med prædifineret track
         {
-            Track Track1 = new Track("DOH322", 23000, 34023, 760); // skabelon      
+            Track Track1 = new Track("DOH322", 23000, 34023, 7600); // skabelon      
             tracklist.Add(Track1);
             var fakeplane = new List<string>();
-            fakeplane.Add("DOH322;23000;34023;760");
+            fakeplane.Add("DOH322;23000;34023;7600");
             RawTransponderDataEventArgs RawTestData = new RawTransponderDataEventArgs(fakeplane);
             _uut.DataHandler(null, RawTestData);
             Assert.That(fakeplane, Is.EqualTo(Track1));
