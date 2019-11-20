@@ -76,6 +76,7 @@
     <Compile Include="TrackCalculatorTest.cs" />
     <Compile Include="AirSpaceFilterTest.cs" />
     <Compile Include="LogCollisionTest.cs" />
+    <Compile Include="TrackTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
