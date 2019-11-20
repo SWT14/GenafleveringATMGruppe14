@@ -61,7 +61,6 @@
     <Compile Include="Track.cs" />
     <Compile Include="TrackCalculator.cs" />
     <Compile Include="TrackHandler.cs" />
-    <Compile Include="TransponderReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
