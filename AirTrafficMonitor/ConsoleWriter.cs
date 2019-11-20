@@ -13,7 +13,7 @@ namespace AirTrafficMonitor
 
             foreach (Track track in trackList)
             {
-                Console.WriteLine("flynummer:" + track.tag + "X coordinat:" + track.X_coor + "Y coordinat:" + track.Y_coor + "højde:" + track.Altitude + "meter" + track.CompassCourse + track.timestamp);
+                Console.WriteLine("flynummer: " + track.tag + "  Xcoordinat: " + track.X_coor + "  Ycoordinat: " + track.Y_coor + "  højde: " + track.Altitude + "M" + track.CompassCourse + track.timestamp);
             }
         }
 
