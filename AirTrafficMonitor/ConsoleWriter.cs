@@ -8,10 +8,10 @@ namespace AirTrafficMonitor
 {
    public class ConsoleWriter : IConsoleWriter
     {
-        public void printPlanes(List<ITrack> tracklist) // har til opgave at udskrive de fly som er i airspace
+        public void printPlanes(List<ITrack> trackList) // har til opgave at udskrive de fly som er i airspace
         {
 
-            foreach (Track track in tracklist)
+            foreach (Track track in trackList)
             {
                 Console.WriteLine("flynummer:" + track.tag + "X coordinat:" + track.X_coor + "Y coordinat:" + track.Y_coor + "højde:" + track.Altitude + "meter" + track.CompassCourse + track.timestamp);
             }

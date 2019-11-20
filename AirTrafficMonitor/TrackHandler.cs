@@ -56,11 +56,12 @@ namespace AirTrafficMonitor
             {
                 timestamp = dateTime
             });
-            
         }
         protected virtual void onTrackCreated(List<ITrack> tracklist)
         {
             OnTrackCreated?.Invoke(this, new TrackEvent() { tlist = tracklist });// Send Event
+            var monitor = new ConsoleWriter();  // ER HER KUN FOR TEST!
+            monitor.printPlanes(tracklist);     // ER HER KUN FOR TEST!
         }// sendEvent(newTrackArgs);
     }
             public class TrackEvent : EventArgs

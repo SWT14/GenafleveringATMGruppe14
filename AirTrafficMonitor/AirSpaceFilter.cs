@@ -54,7 +54,7 @@ namespace AirTrafficMonitor
                 else
                 {
                     TrackDict.Add(track.tag, track);
-                }
+                }               
             }
         }
 
