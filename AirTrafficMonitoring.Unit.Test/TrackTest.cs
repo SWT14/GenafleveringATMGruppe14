@@ -40,6 +40,9 @@ namespace AirTrafficMonitoring.Unit.Test
             Track track = new Track("Flight 1", X, Y, A);
 
             Assert.That(track.Airspace, Is.EqualTo(true));
+
+            // Trying to cover 100% test Altitude get propperty but it doesn't work
+            Assert.That(track.Altitude, Is.EqualTo(A));
         }
 
         // Test 2 - Track is outside AirSpace using Boundary Value Analysis
