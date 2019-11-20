@@ -26,15 +26,15 @@ namespace AirTrafficMonitoring.Unit.Test
         public void CompassCourse_Return_DateVelocity()
         {
             DateTime dateTime1 = DateTime.ParseExact("20191101220012345", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
-            DateTime dateTime2 = DateTime.ParseExact("20191101220023456", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime dateTime2 = DateTime.ParseExact("20191101220013345", "yyyyMMddHHmmssfff", System.Globalization.CultureInfo.InvariantCulture);
 
             track1.timestamp = dateTime1;
-            track1.X_coor = 0;
-            track1.Y_coor = 0;
+            track1.X_coor = 400;
+            track1.Y_coor = 300;
 
             track2.timestamp = dateTime2;
-            track2.X_coor = 100;
-            track2.Y_coor = 200;
+            track2.X_coor = 0;
+            track2.Y_coor = 0;
 
             TrackCalculator track = new TrackCalculator(track1, track2);
             double velocity = track.VelocityCalculation(400, 0, 300, 0, dateTime1, dateTime2);
@@ -50,7 +50,7 @@ namespace AirTrafficMonitoring.Unit.Test
         [TestCase(200, 0, 0, 0, 200)]
         [TestCase(0, 100, 0, 0, 100)]
         [TestCase(0, 0, 500, 0, 500)]
-        [TestCase(0, 0, 0, 6, 600)]
+        [TestCase(0, 0, 0, 600, 600)]
         public void CompassCourse_Return_Span(double X_coor1, double X_coor2, double Y_coor1, double Y_coor2,
             double span)
         {
